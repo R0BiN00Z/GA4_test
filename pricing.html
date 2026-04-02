@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing - LobeHub</title>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5NXBS46NZ6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-5NXBS46NZ6');
+
+    function selectPlan(plan, price) {
+      gtag('event', 'select_item', { item_name: plan, price: price, currency: 'USD' });
+      gtag('event', 'begin_checkout', { plan: plan });
+      alert(`Selected: ${plan} — Coming soon!`);
+    }
+  </script>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .pricing-grid { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; padding: 2rem; }
+    .pricing-card {
+      background: #1a1a1a; border: 1px solid #333; border-radius: 12px;
+      padding: 2rem; width: 260px; text-align: center; transition: border-color 0.2s;
+    }
+    .pricing-card:hover { border-color: #7c3aed; }
+    .pricing-card.featured { border-color: #7c3aed; background: #1e1330; }
+    .pricing-card .badge { background: #7c3aed; color: white; font-size: 0.75rem; padding: 0.2rem 0.7rem; border-radius: 20px; margin-bottom: 1rem; display: inline-block; }
+    .price { font-size: 2.5rem; font-weight: 700; color: white; margin: 1rem 0; }
+    .price span { font-size: 1rem; color: #888; }
+    .features-list { list-style: none; text-align: left; margin: 1.5rem 0; color: #aaa; }
+    .features-list li { padding: 0.4rem 0; }
+    .features-list li::before { content: '✓ '; color: #7c3aed; }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <a class="logo" href="index.html">🤖 LobeHub</a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="agents.html">Agents</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero" style="padding: 4rem 2rem 2rem;">
+    <h1>Simple <span class="gradient">Pricing</span></h1>
+    <p>Start free, scale as you grow.</p>
+  </section>
+
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <h3>Free</h3>
+      <div class="price">$0<span>/mo</span></div>
+      <ul class="features-list">
+        <li>5 agents</li>
+        <li>1,000 runs/month</li>
+        <li>Community support</li>
+        <li>Basic analytics</li>
+      </ul>
+      <button class="btn btn-secondary" style="width:100%"
+        onclick="selectPlan('Free', 0)">Get Started</button>
+    </div>
+    <div class="pricing-card featured">
+      <div class="badge">Most Popular</div>
+      <h3>Pro</h3>
+      <div class="price">$29<span>/mo</span></div>
+      <ul class="features-list">
+        <li>Unlimited agents</li>
+        <li>50,000 runs/month</li>
+        <li>Priority support</li>
+        <li>Advanced analytics</li>
+        <li>Custom integrations</li>
+      </ul>
+      <button class="btn btn-primary" style="width:100%"
+        onclick="selectPlan('Pro', 29)">Start Pro</button>
+    </div>
+    <div class="pricing-card">
+      <h3>Enterprise</h3>
+      <div class="price">$99<span>/mo</span></div>
+      <ul class="features-list">
+        <li>Everything in Pro</li>
+        <li>Unlimited runs</li>
+        <li>Dedicated support</li>
+        <li>SLA guarantee</li>
+        <li>SSO & audit logs</li>
+      </ul>
+      <button class="btn btn-secondary" style="width:100%"
+        onclick="selectPlan('Enterprise', 99)">Contact Sales</button>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2026 LobeHub · <a href="agents.html">Agents</a> · <a href="pricing.html">Pricing</a> · <a href="contact.html">Contact</a></p>
+  </footer>
+</body>
+</html>

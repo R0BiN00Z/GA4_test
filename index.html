@@ -3,73 +3,107 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LobeHub Agent Demo</title>
-
-  <!-- Google tag (gtag.js) -->
+  <title>LobeHub Agent Platform</title>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-5NXBS46NZ6"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-5NXBS46NZ6');
-  </script>
+    gtag('config', 'G-5NXBS46NZ6', {
+      send_page_view: true,
+      user_properties: { platform: 'web' }
+    });
 
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: #0f0f0f;
-      color: #fff;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .container {
-      text-align: center;
-      padding: 2rem;
-      max-width: 600px;
-    }
-    .logo {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-    }
-    h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 1rem;
-    }
-    p {
-      color: #aaa;
-      font-size: 1.1rem;
-      line-height: 1.6;
-      margin-bottom: 2rem;
-    }
-    .btn {
-      display: inline-block;
-      padding: 0.8rem 2rem;
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: 600;
-      transition: opacity 0.2s;
-    }
-    .btn:hover { opacity: 0.85; }
-  </style>
+    // 滚动深度追踪
+    let scrollTracked = {};
+    window.addEventListener('scroll', () => {
+      const percent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+      [25, 50, 75, 90].forEach(p => {
+        if (percent >= p && !scrollTracked[p]) {
+          scrollTracked[p] = true;
+          gtag('event', 'scroll_depth', { depth: p });
+        }
+      });
+    });
+
+    // 停留时长追踪
+    let startTime = Date.now();
+    window.addEventListener('beforeunload', () => {
+      gtag('event', 'time_on_page', { seconds: Math.round((Date.now() - startTime) / 1000) });
+    });
+  </script>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <div class="logo">🤖</div>
-    <h1>LobeHub Agent</h1>
-    <p>Intelligent AI agents powered by LobeHub. Explore, automate, and unlock new possibilities with cutting-edge AI tools.</p>
-    <a href="https://lobehub.com" class="btn" onclick="gtag('event', 'click_cta', {'event_category': 'engagement'})">
-      Explore Agents →
-    </a>
-  </div>
+  <nav>
+    <div class="nav-inner">
+      <a class="logo" href="index.html" onclick="gtag('event','nav_click',{item:'logo'})">🤖 LobeHub</a>
+      <div class="nav-links">
+        <a href="index.html" onclick="gtag('event','nav_click',{item:'home'})">Home</a>
+        <a href="agents.html" onclick="gtag('event','nav_click',{item:'agents'})">Agents</a>
+        <a href="pricing.html" onclick="gtag('event','nav_click',{item:'pricing'})">Pricing</a>
+        <a href="contact.html" onclick="gtag('event','nav_click',{item:'contact'})">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <h1>Build Smarter with<br><span class="gradient">AI Agents</span></h1>
+    <p>LobeHub gives you powerful AI agents to automate tasks, analyze data, and unlock new possibilities.</p>
+    <div class="cta-group">
+      <a href="agents.html" class="btn btn-primary" onclick="gtag('event','cta_click',{button:'get_started',location:'hero'})">Get Started Free</a>
+      <a href="pricing.html" class="btn btn-secondary" onclick="gtag('event','cta_click',{button:'view_pricing',location:'hero'})">View Pricing</a>
+    </div>
+  </section>
+
+  <section class="features">
+    <h2>Why LobeHub?</h2>
+    <div class="cards">
+      <div class="card" onclick="gtag('event','feature_click',{feature:'speed'})">
+        <div class="icon">⚡</div>
+        <h3>Lightning Fast</h3>
+        <p>Deploy agents in seconds. No setup, no friction.</p>
+      </div>
+      <div class="card" onclick="gtag('event','feature_click',{feature:'analytics'})">
+        <div class="icon">📊</div>
+        <h3>Deep Analytics</h3>
+        <p>Real-time insights powered by GA4 integration.</p>
+      </div>
+      <div class="card" onclick="gtag('event','feature_click',{feature:'scale'})">
+        <div class="icon">🚀</div>
+        <h3>Scales with You</h3>
+        <p>From solo developers to enterprise teams.</p>
+      </div>
+      <div class="card" onclick="gtag('event','feature_click',{feature:'open'})">
+        <div class="icon">🔓</div>
+        <h3>Open Ecosystem</h3>
+        <p>Integrate any model, any tool, any workflow.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="newsletter">
+    <h2>Stay in the loop</h2>
+    <p>Get the latest updates on new agents and features.</p>
+    <form onsubmit="handleSubscribe(event)">
+      <input type="email" id="email" placeholder="your@email.com" required>
+      <button type="submit">Subscribe</button>
+    </form>
+    <p id="form-msg" style="display:none; color:#7c3aed; margin-top:0.5rem;">✅ Subscribed!</p>
+  </section>
+
+  <footer>
+    <p>© 2026 LobeHub · <a href="agents.html">Agents</a> · <a href="pricing.html">Pricing</a> · <a href="contact.html">Contact</a></p>
+  </footer>
+
+  <script>
+    function handleSubscribe(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      gtag('event', 'form_submit', { form_name: 'newsletter', email_domain: email.split('@')[1] });
+      document.getElementById('form-msg').style.display = 'block';
+      document.getElementById('email').value = '';
+    }
+  </script>
 </body>
 </html>
