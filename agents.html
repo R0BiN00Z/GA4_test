@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agents - LobeHub</title>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5NXBS46NZ6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-5NXBS46NZ6');
+  </script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <a class="logo" href="index.html" onclick="gtag('event','nav_click',{item:'logo'})">🤖 LobeHub</a>
+      <div class="nav-links">
+        <a href="index.html" onclick="gtag('event','nav_click',{item:'home'})">Home</a>
+        <a href="agents.html" onclick="gtag('event','nav_click',{item:'agents'})">Agents</a>
+        <a href="pricing.html" onclick="gtag('event','nav_click',{item:'pricing'})">Pricing</a>
+        <a href="contact.html" onclick="gtag('event','nav_click',{item:'contact'})">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero" style="padding: 4rem 2rem 2rem;">
+    <h1>Explore <span class="gradient">AI Agents</span></h1>
+    <p>Discover agents built for productivity, creativity, and automation.</p>
+  </section>
+
+  <section class="features">
+    <div class="cards">
+      <div class="card" onclick="gtag('event','agent_view',{agent:'data_analyst'})">
+        <div class="icon">📊</div>
+        <h3>Data Analyst</h3>
+        <p>Analyze GA4, Shopify, and custom data sources with natural language.</p>
+        <a href="#" class="btn btn-primary" style="margin-top:1rem; font-size:0.85rem; padding:0.5rem 1.2rem;"
+          onclick="gtag('event','agent_try',{agent:'data_analyst'})">Try Now</a>
+      </div>
+      <div class="card" onclick="gtag('event','agent_view',{agent:'content_writer'})">
+        <div class="icon">✍️</div>
+        <h3>Content Writer</h3>
+        <p>Generate SEO-optimized blog posts, product descriptions, and social copy.</p>
+        <a href="#" class="btn btn-primary" style="margin-top:1rem; font-size:0.85rem; padding:0.5rem 1.2rem;"
+          onclick="gtag('event','agent_try',{agent:'content_writer'})">Try Now</a>
+      </div>
+      <div class="card" onclick="gtag('event','agent_view',{agent:'kol_outreach'})">
+        <div class="icon">🤝</div>
+        <h3>KOL Outreach</h3>
+        <p>Automate influencer research, profiling, and outreach workflows.</p>
+        <a href="#" class="btn btn-primary" style="margin-top:1rem; font-size:0.85rem; padding:0.5rem 1.2rem;"
+          onclick="gtag('event','agent_try',{agent:'kol_outreach'})">Try Now</a>
+      </div>
+      <div class="card" onclick="gtag('event','agent_view',{agent:'reddit_monitor'})">
+        <div class="icon">👾</div>
+        <h3>Reddit Monitor</h3>
+        <p>Track brand mentions, trending topics, and community sentiment on Reddit.</p>
+        <a href="#" class="btn btn-primary" style="margin-top:1rem; font-size:0.85rem; padding:0.5rem 1.2rem;"
+          onclick="gtag('event','agent_try',{agent:'reddit_monitor'})">Try Now</a>
+      </div>
+      <div class="card" onclick="gtag('event','agent_view',{agent:'ecom_assistant'})">
+        <div class="icon">🛒</div>
+        <h3>E-commerce Assistant</h3>
+        <p>Manage listings, track competitors, and optimize product pages automatically.</p>
+        <a href="#" class="btn btn-primary" style="margin-top:1rem; font-size:0.85rem; padding:0.5rem 1.2rem;"
+          onclick="gtag('event','agent_try',{agent:'ecom_assistant'})">Try Now</a>
+      </div>
+      <div class="card" onclick="gtag('event','agent_view',{agent:'meeting_summarizer'})">
+        <div class="icon">🎙️</div>
+        <h3>Meeting Summarizer</h3>
+        <p>Auto-transcribe and summarize meetings with action items extraction.</p>
+        <a href="#" class="btn btn-primary" style="margin-top:1rem; font-size:0.85rem; padding:0.5rem 1.2rem;"
+          onclick="gtag('event','agent_try',{agent:'meeting_summarizer'})">Try Now</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 LobeHub · <a href="agents.html">Agents</a> · <a href="pricing.html">Pricing</a> · <a href="contact.html">Contact</a></p>
+  </footer>
+</body>
+</html>
